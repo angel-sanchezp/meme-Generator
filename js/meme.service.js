@@ -34,23 +34,16 @@ function addText() {
         var size = memeLines[i].size;
         var color =memeLines[i].color;
         var fontFamily=memeLines[i].fontFamily;
-        var posX=memeLines[i].posX;
-        var posY = memeLines[i].posY;
-        saveLinePos(i, posX, posY);
-        drawText(text, size, color, fontFamily, posX,posY);
+        var pos=memeLines[i].pos;
+        if (!pos) {
+            pos = getLinePosIdxBased(i);
+        }
+        saveLinePos(i,pos);
+        drawText(text, size, color, fontFamily,pos);
     }
-
-    // memeLines.forEach((line,idx) => {
-    //     var text = line.txt;
-    //     var size = line.size;
-    //     var color =line.color;
-    //     var posy = line.posy;
-    //     drawText(text, size, color, posy);
-    // });
-
 }
 
-function drawText(txt, size, color, fontFamily, x ,y) {
+function drawText(txt, size, color, fontFamily, pos) {
     // gCtx.font = '48px serif';
     // gCtx.fillText(txt, x, y);
     // gCtx.textBaseline = 'middle';
@@ -61,7 +54,7 @@ function drawText(txt, size, color, fontFamily, x ,y) {
     // console.log( meme.lines[0].size)
     gCtx.font = `${size}px ${fontFamily}`;
     gCtx.fillStyle = color;
-    gCtx.fillText(txt,x, y);
+    gCtx.fillText(txt,pos.x, pos.y);
     // gCtx.strokeText(txt, x, y);
 }
 
@@ -83,12 +76,12 @@ function setFont(fontFamily){
     if (selectedLine) selectedLine.fontFamily = fontFamily;
 }
 
-function saveLinePos(idx, posX,posY) {
+function saveLinePos(idx,pos) {
     if (idx < 0 || idx >= gMeme.lines.length) return;
 
     var line = gMeme.lines[idx];
-    line.posX = posX;
-    line.posY = posY;
+    line.pos= pos;
+   
 
 }
 
@@ -102,16 +95,8 @@ function setIncFSize(indicator) {
 }
 
 function setUpDown(index) {
-    var meme = getMeme();
-    var posy = meme.lines[gMeme.selectedLineIdx].posY;
-    console.log(posy);
-    // if(posY===500 ||posY===50) return;
-    posy += index;
-    meme.lines[gMeme.selectedLineIdx].posY = posy;
-    // console.log(posY)
-    // console.log(posY);
-
-    // console.log( meme.lines[0])
+    var selectedLine = getSelectedLine();
+    if (selectedLine) selectedLine.pos.y += index;
 }
 
 function setClearTxt() {
@@ -129,8 +114,7 @@ function addRow() {
             size: 20,
             fontFamily: 'IMPACT',
             color: 'black',
-            posX:250,
-            posY:50,
+            pos:null,
             isDrag:false
     }
     if (gMeme) {
@@ -169,5 +153,22 @@ function renderMemes(memes){
 
     var elGallery = document.querySelector('.memes-gallery');
     elGallery.innerHTML = strHtml.join('');
+}
+
+//Default yPosition
+function getLinePosIdxBased(lineIdx) {
+    //Middle pos
+    var pos = { x: gCanvas.width / 2, y: gCanvas.height / 2 };
+    switch (lineIdx) {
+        //1st line will be at the top of the canvas-about 50px from start
+        case 0:
+            pos.y = 50;
+            break;
+            //2nd line will be at the bottom of the canvas-about 50px from end
+        case 1:
+            pos.y = gCanvas.height - 50;
+    }
+    //The rest of the lines will be positioned at the center of the canvas
+    return pos;
 }
 

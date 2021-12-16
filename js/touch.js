@@ -5,25 +5,17 @@ var gStartPos;
 
 
 function isTextClicked(line, clickedPos) {
-    // console.log(line,clickedPos);
-    if (!line || !line.posY && !line.posX) return;
+    if (!line || !line.pos) return;
+    var rectHeight = line.size + 10;
+    var rectWidth = line.width + 20;
 
-    // var rectHeight = line.size + 10;
-    // var rectWidth = line.width + 20;
-
-    var rectX = line.posX;
-    var rectY = line.posY;
+    var rectX = line.pos.x;
+    var rectY = line.pos.y;
 
     var point1 = { x: rectX, y: rectY };
-    // var point2 = { x: rectWidth + rectX, y: rectY + rectHeight };
-    // console.log(point2)
-    // var isTouched = clickedPos.x >= point1.x && clickedPos.x <= point2.x &&
-    //     clickedPos.y >= point1.y && clickedPos.y <= point2.y;
-    console.log(clickedPos.x,clickedPos.y)
-    console.log(point1.x,point1.y)
-    var isTouched = clickedPos.x >= point1.x && clickedPos.y >= point1.y;
-    console.log(isTouched)
-
+    var point2 = { x: rectWidth + rectX, y: rectY + rectHeight };
+    var isTouched = clickedPos.x >= point1.x && clickedPos.x <= point2.x &&
+        clickedPos.y >= point1.y && clickedPos.y <= point2.y;
 
     return isTouched;
 }
@@ -63,8 +55,6 @@ function onDown(ev) {
     var lines = getMemeLines();
     const pos = getEvPos(ev);
     var touchedLine = lines.find(line => isTextClicked(line, pos));
-    console.log(touchedLine)
-
     if (!touchedLine) {
         selectLine(-1);
         renderMeme();
@@ -82,23 +72,17 @@ function onDown(ev) {
 
 function onMove(ev) {
     var lines = getMemeLines();
-    // console.log(lines)
     const pos = getEvPos(ev)
-    // console.log(pos)
 
     var touchedLine = lines.find(line => isTextClicked(line, pos));
-    console.log(touchedLine)
-
     if (!touchedLine) {
         document.body.style.cursor = 'default';
         return;
     }
 
     document.body.style.cursor = 'grab';
-    console.log(gLine,gLine.isDrag)
     if (gLine && gLine.isDrag) {
         const pos = getEvPos(ev)
-        console.log(pos)
         const dx = pos.x - gStartPos.x
         const dy = pos.y - gStartPos.y
         moveLine(dx, dy)

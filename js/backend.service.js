@@ -18,8 +18,7 @@ function createMeme(imgId) {
             size: 20,
             fontFamily: 'IMPACT',
             color: 'black',
-            posX:250,
-            posY:50,
+            pos:null,
             isDrag:false
         }
         ]
