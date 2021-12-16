@@ -75,6 +75,7 @@ function _saveMemesToStorage() {
 }
 
 function loadMemes(){
+    console.log('hi')
     var memes=loadFromStorage(KEY)
     renderMemes(memes);
 }

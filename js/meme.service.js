@@ -14,7 +14,7 @@ function initCanvas() {
 
 function drawMeme() {
     var currImg = getImg();
-    console.log(currImg);
+    // console.log(currImg);
     var img = new Image();
     img.src = currImg.url;
     // console.log(img.src);
@@ -27,7 +27,7 @@ function drawMeme() {
 
 function addText() {
     var memeLines = getMemeLines();
-    console.log(memeLines.length);
+    // console.log(memeLines.length);
 
     for(var i=0;i<memeLines.length;i++){
         var text = memeLines[i].txt;
@@ -92,6 +92,14 @@ function setIncFSize(indicator) {
     meme.lines[gMeme.selectedLineIdx].size = sizeNum;
     // console.log(meme.lines[0]);
 
+}
+
+function  setMoveX(index){
+    var selectedLine = getSelectedLine();
+    if(selectedLine){
+      if(index===1) selectedLine.pos.x=250;
+      selectedLine.pos.x+=index;
+    }
 }
 
 function setUpDown(index) {

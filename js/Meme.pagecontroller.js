@@ -68,7 +68,13 @@ function onChangeFont(fontFamily) {
     renderMeme();
 }
 
+function onMoveX(index){
+    setMoveX(index);
+    renderMeme();
+}
+
 function onGetSavedMemes(){
+    console.log('hi')
     var elGallery= document.querySelector('.gallery');
     elGallery.style.display='none';
     var elAppContainer = document.querySelector('.app-container');

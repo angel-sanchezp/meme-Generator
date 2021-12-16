@@ -123,11 +123,14 @@
 }
 
 .btns-actions {
-    margin-top: 135px;
+    margin-top: 120px;
     width: 328px;
     height: 67px;
 }
 
+.btn-line{
+    margin-top: 20px;
+}
 
 .btns {
     margin-left: 20px;
