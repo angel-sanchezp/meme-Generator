@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MemeGen</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/gallery.css">
 </head>
 
-<body>
-        <header class="flex space-between align-center main-layout">
-            <div class="logo">
-                <img src="./LOGO/LOGO.png" alt="Blogin." class="logo">
-            </div>
+<body onload="onInit()">
 
-            <nav class="nav-bar">
-                <ul class=" flex space-between align-center clean-list">
-                    <li><a>gallery</a></li>
-                    <li><a>Memes</a></li>
-                    <li><a>About</a></li>
-                    
-                </ul>
-            </nav>
-        </header>
+    <div class="screen" onclick="toggleMenu()"></div>
+    <header class=" header flex space-between align-center main-layout">
+        <div class="logo">
+            <img src="./LOGO/LOGO.png" alt="Blogin." class="logo">
+        </div>
 
-            <section class="gallery"></section>
+        <nav class="nav-bar">
+            <ul class=" flex space-between align-center clean-list">
+                <li><a onclick="onBackToGallery()">gallery</a></li>
+                <li><a onclick="onGetSavedMemes()">Memes</a></li>
+                <li><a>About</a></li>
+
+            </ul>
+
+        </nav>
+        <button class="btn-menu">
+            <img src="./icons/menu.png" class="menu-burger" alt="" onclick="toggleMenu()">
+
+        </button>
+    </header>
+
+    <section class="memes-gallery"></section>
+    <section class="gallery"></section>
 
 
     <section class="app-container">
@@ -34,18 +43,68 @@
             <canvas class="my-canvas" height="500" width="500"></canvas>
         </section>
 
-        <div class="editor-container">
+        <div class="editor-container flex">
             <section class="editor-meme">
-            </section>
+                <input type="text" class="text-input" name="line-text" placeholder="Your Text Here"
+                    oninput="onChangeText(this)">
+                <div class="option-input">
+                    <button class="btn-move"><img src="./icons/add.png" onclick="onAddRow()"></button>
+                    <button class="btn-move"><img src="./icons/trash.png" onclick="onClear()"></button>
+                    <button class="btn-move"><img src="./icons/up.png" onclick="onUpDown(-50)"></button>
+                    <button class="btn-move"><img src="./icons/down.png" onclick="onUpDown(50)"></button>
+
+                </div>
+
+                <div class="option-text">
+                    <label>Text Color</label>
+                    <input type="color" class="color-text" name="color-text" placeholder="#fff"
+                        oninput="onChangeTextColor(this)">
+                    <div class="font-text flex">
+                        <select class="font-family" name="select-font-family" onchange="onChangeFont(this.value)">
+                            <option value="IMPACT">Impact</option>
+                            <option value="MONOSPACE">monospace</option>
+                            <option value="ARIAL">Arial</option>
+                        </select>
+                        <button class=" btn btn-increase"><img src="./icons/increase font - icon.png"
+                                onclick="onFSize(5)"></button>
+                        <button class=" btn btn-increase"><img src="./icons/decrease font - icon.png"
+                                onclick="onFSize(-5)"></button>
+                    </div>
+
+                </div>
+
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <section class="share-and-download-container">
+                        <div class="share-btn btn ">
+                            <input name="img" id="imgData" type="hidden" />
+                                <div class="btns-actions flex">
+                                    <button class="btns share"><img src="./icons/share.png"></button>
+                                    <a href="#" class="btns save" onclick="onSave(this)">
+                                        <img src="./icons/save.png">
+                                    </a>
+                                    <a href="#" class="download btns" onclick="onDownloadCanvas(this)" download="mycanvas">
+                                        <img src="./icons/download.png">
+                                    </a>
+            
+                                </div>
+                        </div>
         </div>
+    </section>
+    </form>
+    </section>
 
-
-
-
-
+    </div>
 
     </section>
 
-    
+    <script src="js/touch.js"></script>
+    <script src="js/upload-service.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/backend.service.js"></script>
+    <script src="js/meme.service.js"></script>
+    <script src="js/Meme.pagecontroller.js"></script>
+    <script src="js/gallery.controller.js"></script>
+
 </body>
+
 </html>
