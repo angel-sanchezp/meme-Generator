@@ -19,6 +19,7 @@ function createMeme(imgId) {
             fontFamily: 'IMPACT',
             color: 'black',
             pos:null,
+            width: null,
             isDrag:false
         }
         ]

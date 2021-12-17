@@ -37,6 +37,13 @@ function onClear() {
     inputTxt.value = '',
         setClearTxt();
     renderMeme();
+
+}
+
+
+function onSwitchTxt() {
+    setSwitchLines();
+    renderMeme();
 }
 
 function onAddRow() {
@@ -51,15 +58,15 @@ function focusText() {
 
 function onBackToGallery() {
     var elAppContainer = document.querySelector('.app-container');
-    elAppContainer.style.display='none';
+    elAppContainer.style.display = 'none';
     var elGallery = document.querySelector('.memes-gallery');
-    elGallery.style.display='none';
-    var elGallery= document.querySelector('.gallery');
-    elGallery.style.display='grid';
- 
+    elGallery.style.display = 'none';
+    var elGallery = document.querySelector('.gallery');
+    elGallery.style.display = 'grid';
+
 }
 
-function onSave(elbtn){
+function onSave(elbtn) {
     saveMeme();
 }
 
@@ -68,21 +75,21 @@ function onChangeFont(fontFamily) {
     renderMeme();
 }
 
-function onMoveX(index){
+function onMoveX(index) {
     setMoveX(index);
     renderMeme();
 }
 
-function onGetSavedMemes(){
+function onGetSavedMemes() {
     console.log('hi')
-    var elGallery= document.querySelector('.gallery');
-    elGallery.style.display='none';
+    var elGallery = document.querySelector('.gallery');
+    elGallery.style.display = 'none';
     var elAppContainer = document.querySelector('.app-container');
-    elAppContainer.style.display='none'
+    elAppContainer.style.display = 'none'
     loadMemes();
 }
 
-function onDownloadCanvas(elLink){
+function onDownloadCanvas(elLink) {
     const data = gCanvas.toDataURL();
     elLink.href = data;
     elLink.download = 'my-canvas';

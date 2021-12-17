@@ -5,32 +5,32 @@ var gStartPos;
 
 
 function isTextClicked(line, clickedPos) {
-    if (!line || !line.pos) return;
-    var rectHeight = line.size + 10;
-    var rectWidth = line.width + 20;
 
-    var rectX = line.pos.x;
-    var rectY = line.pos.y;
+    
+    const { pos } = line;
+    const heigth= line.size+10;
+    const width=line.width+40;
+    const area=(heigth*width);
+    console.log(area)
+    // console.log('isClicked', pos);
+//    const distance= Math.hypot(clickedPos.x -width, clickedPos.y - heigth); 
+    const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y- clickedPos.y) ** 2);
+    console.log(`distance ${distance} <= ${line.size}`);
+    return distance <= area;
 
-    var point1 = { x: rectX, y: rectY };
-    var point2 = { x: rectWidth + rectX, y: rectY + rectHeight };
-    var isTouched = clickedPos.x >= point1.x && clickedPos.x <= point2.x &&
-        clickedPos.y >= point1.y && clickedPos.y <= point2.y;
 
-    return isTouched;
 }
 
 
-function setTextDrag(selectedLine, isDrag) {
-    if (!selectedLine) return;
-    selectedLine.isDrag = isDrag;
-    if (isDrag) gLine = selectedLine;
+function setTextDrag(line, isDrag) {
+    line.isDrag = isDrag;
 
 }
 
 function moveLine(dx, dy) {
-    gLine.pos.x += dx
-    gLine.pos.y += dy
+    var line = getSelectedLine();
+    line.pos.x += dx
+    line.pos.y += dy
 }
 
 function addListeners() {
@@ -45,54 +45,42 @@ function addMouseListeners() {
 }
 
 function addTouchListeners() {
-    gCanvas.addEventListener('touchmove', onMove, event)
-    gCanvas.addEventListener('touchstart', onDown, event)
+    gCanvas.addEventListener('touchmove', onMove)
+    gCanvas.addEventListener('touchstart', onDown)
     gCanvas.addEventListener('touchend', onUp)
 }
 
 
 function onDown(ev) {
-    var lines = getMemeLines();
+    var line = getSelectedLine();
+    console.log(line.pos)
     const pos = getEvPos(ev);
-    var touchedLine = lines.find(line => isTextClicked(line, pos));
-    if (!touchedLine) {
-        selectLine(-1);
-        renderMeme();
-        return;
-    }
-    var lineIdx = lines.findIndex(line => line.pos === touchedLine.pos);
-    setTextDrag(touchedLine, true)
-    selectLine(lineIdx);
-    gLine = getSelectedLine();
-    gStartPos = pos
-    document.body.style.cursor = 'grabbing'
-    renderMeme();
+    console.log('ondown-pos', pos);
+    if (!isTextClicked(line, pos)) return;
+    console.log('hi')
+    setTextDrag(line, true);
+    gStartPos = pos;
+    document.body.style.cursor = 'grabbing';
 
 }
 
 function onMove(ev) {
-    var lines = getMemeLines();
+    var line = getSelectedLine();
+    console.log(line.isDrag);
+    if (!line.isDrag) return;
     const pos = getEvPos(ev)
-
-    var touchedLine = lines.find(line => isTextClicked(line, pos));
-    if (!touchedLine) {
-        document.body.style.cursor = 'default';
-        return;
-    }
-
-    document.body.style.cursor = 'grab';
-    if (gLine && gLine.isDrag) {
-        const pos = getEvPos(ev)
-        const dx = pos.x - gStartPos.x
-        const dy = pos.y - gStartPos.y
-        moveLine(dx, dy)
-        gStartPos = pos
-        renderMeme();
-    }
+    console.log('ondown-pos', pos);
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    moveLine(dx, dy)
+    gStartPos = pos
+    renderMeme();
 }
 
 function onUp() {
-    setTextDrag(gLine, false);
+    setTextDrag(false);
+    document.body.style.cursor = 'grab';
+
 }
 
 function getEvPos(ev) {
@@ -104,8 +92,10 @@ function getEvPos(ev) {
         ev.preventDefault()
         ev = ev.changedTouches[0]
         pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+            // x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            // y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+            x: ev.pageX - ev.target.offsetLeft,
+            y: ev.pageY - ev.target.offsetTop
         }
     }
     return pos
