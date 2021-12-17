@@ -6,17 +6,23 @@ var gStartPos;
 
 function isTextClicked(line, clickedPos) {
 
-    
+    var rectHeight = line.size + 10;
+    var rectWidth = line.width + 20;
+
     const { pos } = line;
-    const heigth= line.size+10;
-    const width=line.width+40;
-    const area=(heigth*width);
-    console.log(area)
-    // console.log('isClicked', pos);
-//    const distance= Math.hypot(clickedPos.x -width, clickedPos.y - heigth); 
-    const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y- clickedPos.y) ** 2);
-    console.log(`distance ${distance} <= ${line.size}`);
-    return distance <= area;
+    var rectX = pos.x;
+    var rectY = pos.y;
+    var point1 = { x: rectX, y: rectY };
+    var point2 = { x: rectWidth + rectX, y: rectY + rectHeight };
+    // console.log(rectHeight);
+    // console.log(rectWidth);
+    // console.log(point1)
+    // console.log(point2)
+   const distance=  clickedPos.x >= point1.x && clickedPos.x <= point2.x &&
+   clickedPos.y >= point1.y && clickedPos.y <= point2.y;
+    // const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y- clickedPos.y) ** 2);
+    // console.log(`distance ${distance} <= ${line.size}`);
+    return distance 
 
 
 }
@@ -69,7 +75,7 @@ function onMove(ev) {
     console.log(line.isDrag);
     if (!line.isDrag) return;
     const pos = getEvPos(ev)
-    console.log('ondown-pos', pos);
+    // console.log('ondown-pos', pos);
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
     moveLine(dx, dy)

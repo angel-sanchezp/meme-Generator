@@ -24,3 +24,4 @@ function imgClicked(imgId) {
     renderMeme();
 
 }
+

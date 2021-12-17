@@ -135,7 +135,7 @@
 }
 
 .btns-actions {
-    margin-top: 120px;
+    margin-top: 0px;
     width: 328px;
     height: 67px;
 }
@@ -167,6 +167,23 @@ body.menu-open .screen{
     display: none;
 }
 
+.stikers-box{
+    width: 288px;
+    height: 103px;
+    margin: 11px 0 10px 0.5px;
+    padding: 16px 3.7px;
+    background-color: #fff;
+    border: 1px solid;
+}
+
+.stikers{
+    width: 83px;
+    height: 78px;
+    margin-left: 5px;
+    border: 0;
+    z-index: 5;
+    background-color: #fff;
+}
 
 @media(max-width:830px) {
 

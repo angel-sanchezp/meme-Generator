@@ -12,6 +12,10 @@ function renderMeme() {
     gCtx.restore();
 }
 
+function onDrawStiker(id){
+   DrawStiker(id);
+}
+
 function onChangeText(elInput) {
     setLineText(elInput.value)
     renderMeme();

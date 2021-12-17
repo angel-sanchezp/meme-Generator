@@ -3,6 +3,7 @@
 
 const KEY='MemeDB';
 var gImgs = createImages();
+var gStickers=createStickers();
 var gMemeImg;
 var gMemes = [];
 var gMeme;
@@ -37,6 +38,10 @@ function getImgs() {
     // console.log(gImgs);
     return gImgs;
 }
+
+function getStickers(){
+    return gStickers;
+}
 function getImg() {
     // console.log(gImgs);
     return gMemeImg;
@@ -51,6 +56,21 @@ function CreateImg(id) {
         id,
         url: `./imgs/${id}.jpg`
     };
+}
+
+function createSticker(id){
+    return{
+        id,
+        url:`./stickers/${id}.png`
+    };
+}
+
+function createStickers(){
+    var stickers=[];
+    for(var i=1;i<=3;i++){
+        var newSticker=createSticker(i);
+        stickers.push(newSticker);
+    }
 }
 function createImages() {
     var imgs = [];

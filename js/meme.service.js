@@ -21,8 +21,19 @@ function drawMeme() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
         addText();
+       
     }
 
+}
+
+function DrawStiker(id){
+    addRowSticker(id)
+    var img = new Image();
+    img.src = `./stickers/${id}.png`;
+    // console.log(img.src);
+    img.onload = () => {
+        gCtx.drawImage(img,0,0);
+    }
 }
 
 function addText() {
@@ -139,6 +150,26 @@ function addRow() {
         color: 'black',
         pos: null,
         width: null,
+        isDrag: false
+    }
+    if (gMeme) {
+        gMeme.lines.push(newLine);
+        selectLine(gMeme.lines.length - 1);
+    }
+
+    console.log(newLine);
+    console.log(gMeme);
+
+}
+
+function addRowSticker(id) {
+    var newLine = {
+        sticker:`./stickers/${id}.png`,
+        size: 71,
+        fontFamily: 'IMPACT',
+        color: 'none',
+        pos: {x:0,y:0},
+        width: 75,
         isDrag: false
     }
     if (gMeme) {
