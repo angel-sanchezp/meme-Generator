@@ -68,9 +68,6 @@
 
 }
 
-
-
-
 /* CANVAS */
 .my-canvas {
     background-color: wheat;
@@ -131,7 +128,7 @@
     height: 100px;
     text-align: center;
     margin-left: 500px;
-    margin-top: -500px;
+    margin-top: 150px;
 }
 
 .btns-actions {

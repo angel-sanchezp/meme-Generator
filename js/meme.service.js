@@ -10,8 +10,6 @@ function initCanvas() {
 
 }
 
-
-
 function drawMeme() {
     var currImg = getImg();
     // console.log(currImg);
@@ -21,26 +19,42 @@ function drawMeme() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
         addText();
+        addSticker();
        
     }
 
 }
 
-function DrawStiker(id){
-    addRowSticker(id)
+function drawStiker(id,x=0,y=0){
     var img = new Image();
     img.src = `./stickers/${id}.png`;
     // console.log(img.src);
     img.onload = () => {
-        gCtx.drawImage(img,0,0);
+        gCtx.drawImage(img,x,y);
     }
 }
 
+function addSticker(){
+    var memeLines = getMemeLines();
+    for(var i=0;i<memeLines.length;i++){
+        if(memeLines[i].txt)continue
+        var stickerId=memeLines[i].id;
+        var {x,y}=memeLines[i].pos;
+        drawStiker(stickerId,x,y)
+    }
+}
+
+
+
 function addText() {
     var memeLines = getMemeLines();
-    // console.log(memeLines.length);
+    console.log('meme lines',memeLines);
 
     for (var i = 0; i < memeLines.length; i++) {
+        if(memeLines[i].sticker) {
+            addSticker();
+            continue;
+        }
         var text = memeLines[i].txt;
         var size = memeLines[i].size;
         var color = memeLines[i].color;
@@ -53,21 +67,21 @@ function addText() {
         }
         saveLinePos(i, pos);
         saveWidthLine(i, txtWidth);
-        drawText(text, size, color, txtWidth, fontFamily, pos);
+        drawText(text, size, color, fontFamily, pos);
     }
 }
 
-function drawText(txt, size, color, txtWidth, fontFamily, pos) {
+function drawText(txt, size, color,fontFamily, pos) {
     gCtx.beginPath();
     gCtx.textAlign = 'center';
     var rectHeight = size + 10;
-    var rectWidth = txtWidth + 40;
-    console.log('meseure before touch', rectWidth)
+    var rectWidth = (gCtx.measureText(txt).width + 40);
+    // console.log('meseure before touch', rectWidth)
     markText(pos.x, pos.y, rectHeight, rectWidth);
     gCtx.font = `${size}px ${fontFamily}`;
     gCtx.fillStyle = color;
     gCtx.setLineDash([0]);
-    gCtx.fillText(txt, (pos.x + rectWidth / 2), (pos.y + rectHeight / 2));
+    gCtx.fillText(txt, (pos.x + rectWidth/2), (pos.y + rectHeight / 2));
     gCtx.closePath();
     // gCtx.strokeText(txt, x, y);
 }
@@ -127,13 +141,19 @@ function setSwitchLines() {
     } else if (newIdx === gMeme.lines.length) {
         newIdx = 0;
     }
+    
     selectLine(newIdx);
+
+
 }
 
 function setUpDown(index) {
     var selectedLine = getSelectedLine();
-    if (selectedLine) selectedLine.pos.y += index;
+    console.log(selectedLine);
+    if (selectedLine) selectedLine.pos.y += index; 
 }
+
+
 
 function setClearTxt() {
     var lineIdx = gMeme.selectedLineIdx;
@@ -157,13 +177,14 @@ function addRow() {
         selectLine(gMeme.lines.length - 1);
     }
 
-    console.log(newLine);
-    console.log(gMeme);
+    // console.log(newLine);
+    // console.log(gMeme);
 
 }
 
 function addRowSticker(id) {
     var newLine = {
+        id,
         sticker:`./stickers/${id}.png`,
         size: 71,
         fontFamily: 'IMPACT',
@@ -173,15 +194,13 @@ function addRowSticker(id) {
         isDrag: false
     }
     if (gMeme) {
-        gMeme.lines.push(newLine);
+         gMeme.lines.push(newLine);
         selectLine(gMeme.lines.length - 1);
     }
-
-    console.log(newLine);
-    console.log(gMeme);
+    // console.log(newLine);
+    // console.log(gMeme);
 
 }
-
 
 function selectLine(idx) {
     gMeme.selectedLineIdx = idx;
@@ -220,8 +239,6 @@ function imgAction(imgId) {
         showModal("your Meme was Delete!");
         _saveMemesToStorage();
         renderMemes();
-
-
     }
     else {
         imgClicked(imgId);
@@ -249,6 +266,7 @@ function markText(x, y, rectHeight, rectWidth) {
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = 'white';
     gCtx.setLineDash([2]);
+    // console.log(rectWidth,rectHeight)
     drawArc(x + rectWidth, y + rectHeight)
     gCtx.strokeRect(x, y, rectWidth, rectHeight);
 }

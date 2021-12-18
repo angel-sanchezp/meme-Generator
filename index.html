@@ -34,10 +34,27 @@
     </header>
 
     <section class="memes-gallery"></section>
-    <section class="gallery"></section>
+    
+    <div class="pic-filter">
+        <h3>Choose Category:</h3>
+            <input list="search-datalist" name="search-datalist" id="search" type="txt" class="search-words" oninput="onSetFilter()" placeholder="Type an image category...">
+            <datalist id="search-datalist">
+              <option value="pets">
+              <option value="politics">
+              <option value="famous">
+              <option value="baby">
+              <option value="funny">
+              <option value="another">
+            </datalist>
+    </div>
+    <div class="gallery-container">
+
+        <section class="gallery"></section>
+
+    </div>
+
+
     <div class="modal"><h2></h2></div>
-
-
 
     <section class="app-container">
 
@@ -86,9 +103,9 @@
 
                 </div>
                 <div class="stikers-box">
-                    <button class="stikers"><img src="./stickers/1.png" onclick="onDrawStiker(1)"></button>
-                    <button class="stikers"><img src="./stickers/2.png" onclick="onDrawStiker(2)"></button>
-                    <button class="stikers"><img src="./stickers/3.png" onclick="onDrawStiker(3)"></button>
+                    <button class="stikers"><img src="./stickers/1.png" onclick="onAddStiker(1)"></button>
+                    <button class="stikers"><img src="./stickers/2.png" onclick="onAddStiker(2)"></button>
+                    <button class="stikers"><img src="./stickers/3.png" onclick="onAddStiker(3)"></button>
       
                 </div>
 
@@ -115,7 +132,9 @@
     </div>
 
     </section>
-
+    <footer class="footer">
+        <div class="logo"> <img src="./LOGO/LOGO.png" alt="Blogin." class="logo"></div>
+       <h4> Created by AngelS-Copy Rigth Reserved</h4></footer>
     <script src="js/touch.js"></script>
     <script src="js/upload-service.js"></script>
     <script src="js/storage.js"></script>

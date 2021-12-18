@@ -1,7 +1,7 @@
 'use strict'
 
 function onInit() {
-    loadImages();
+    initGallery();
     initCanvas();
     // renderMeme();
 }
@@ -11,9 +11,13 @@ function renderMeme() {
     drawMeme();
     gCtx.restore();
 }
+function onSetFilter() {
+  renderImgs();
+}
 
-function onDrawStiker(id){
-   DrawStiker(id);
+function onAddStiker(id){
+    addRowSticker(id);
+    renderMeme();
 }
 
 function onChangeText(elInput) {
@@ -41,7 +45,6 @@ function onClear() {
     inputTxt.value = '',
         setClearTxt();
     renderMeme();
-
 }
 
 
@@ -61,13 +64,15 @@ function focusText() {
 }
 
 function onBackToGallery() {
+    console.log('hi');
     var elAppContainer = document.querySelector('.app-container');
     elAppContainer.style.display = 'none';
     var elGallery = document.querySelector('.memes-gallery');
     elGallery.style.display = 'none';
-    var elGallery = document.querySelector('.gallery');
-    elGallery.style.display = 'grid';
-
+    var elPicFilter=document.querySelector('.pic-filter');
+    elPicFilter.style.display='filter';
+    var elGallery = document.querySelector('.gallery-container');
+    elGallery.style.display = 'block';
 }
 
 function onSave(elbtn) {
@@ -85,11 +90,13 @@ function onMoveX(index) {
 }
 
 function onGetSavedMemes() {
-    console.log('hi')
-    var elGallery = document.querySelector('.gallery');
+    // console.log('hi')
+    var elGallery = document.querySelector('.gallery-container');
     elGallery.style.display = 'none';
     var elAppContainer = document.querySelector('.app-container');
     elAppContainer.style.display = 'none'
+    var elPicFilter=document.querySelector('.pic-filter');
+    elPicFilter.style.display='none';
     loadMemes();
 }
 

@@ -3,17 +3,17 @@
 
 const KEY='MemeDB';
 var gImgs = createImages();
-var gStickers=createStickers();
+// var gStickers=createStickers();
 var gMemeImg;
 var gMemes = [];
 var gMeme;
-
 
 function createMeme(imgId) {
     return {
         selectedImg: imgId,
         url:`./imgs/${imgId}.jpg`,
         selectedLineIdx: 0,
+        selectedStikerIdx:0,
         lines: [{
             txt: 'Your Text',
             size: 20,
@@ -24,11 +24,9 @@ function createMeme(imgId) {
             isDrag:false
         }
         ]
+        
     }
 }
-
-
-
 
 function getMeme() {
     return gMeme;
@@ -39,8 +37,8 @@ function getImgs() {
     return gImgs;
 }
 
-function getStickers(){
-    return gStickers;
+function getMemeStickers(index){
+    return gMeme.lines[index];
 }
 function getImg() {
     // console.log(gImgs);
@@ -52,26 +50,118 @@ function getMemeLines() {
 }
 
 function CreateImg(id) {
-    return {
-        id,
-        url: `./imgs/${id}.jpg`
-    };
-}
+   switch(id){
 
-function createSticker(id){
-    return{
+    case 1:return{
         id,
-        url:`./stickers/${id}.png`
-    };
-}
-
-function createStickers(){
-    var stickers=[];
-    for(var i=1;i<=3;i++){
-        var newSticker=createSticker(i);
-        stickers.push(newSticker);
+        url: `./imgs/${id}.jpg`,
+        keywords: ['funny', 'politics'] 
     }
+    case 2:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['pets'] 
+    }
+    case 3:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords: ['babys', 'pets'] 
+    }
+    case 4:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['pets'] 
+    }
+    case 5:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['babys','funny'] 
+    }
+    case 6:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['another'] 
+    }
+    case 7:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['babys','funny'] 
+    }
+    case 8:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['another'] 
+    }
+    case 9:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['babys','funny'] 
+    }
+    case 10:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['politics','funny'] 
+    }
+    case 11:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['another'] 
+    }
+    case 12:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:['another']
+    }
+    case 13:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['famous'] 
+    }
+    case 14:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['famous'] 
+    }
+    case 15:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['another'] 
+    }
+    case 16:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['famous'] 
+    }
+    case 17:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['politics'] 
+    }
+    case 18:return{
+        id,
+        url: `./imgs/${id}.jpg`,
+        keywords:  ['funny'] 
+    }
+   }
+    
 }
+// start to render sticker
+// function createSticker(id){
+//     return{
+//         id,
+//         url:`./stickers/${id}.png`
+//     };
+// }
+
+// function createStickers(){
+//     var stickers=[];
+//     for(var i=1;i<=3;i++){
+//         var newSticker=createSticker(i);
+//         stickers.push(newSticker);
+//     }
+
+//     return stickers;
+// }
 function createImages() {
     var imgs = [];
     for (var i = 1; i <= 18; i++) {
@@ -96,7 +186,8 @@ function _saveMemesToStorage() {
 }
 
 function loadMemes(){
-    console.log('hi')
+    // console.log('hi')
     var memes=loadFromStorage(KEY)
+    console.log(memes);
     renderMemes(memes);
 }
