@@ -10,6 +10,10 @@ function initCanvas() {
 
 }
 
+function getCanvas() {
+    return gCanvas;
+}
+
 function drawMeme() {
     var currImg = getImg();
     // console.log(currImg);

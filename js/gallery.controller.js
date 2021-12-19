@@ -10,6 +10,8 @@ function initGallery() {
 function renderImgs() {
     var elAppContainer = document.querySelector('.app-container');
     elAppContainer.style.display = 'none';
+    var elGalleryMemes = document.querySelector('.memes-gallery');
+    elGalleryMemes.style.display = 'none';
     var imgs =getImgsForDisplay();
     console.log(imgs)
     var strHtml = imgs.map(img =>

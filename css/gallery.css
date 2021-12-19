@@ -1,6 +1,6 @@
-/* .gallery-container{
-    margin-top: -100px;
-} */
+.gallery-container{
+    margin-top: 160px;
+}
 
 .gallery {
     margin: 60px 90px;
@@ -22,7 +22,7 @@ img {
     padding-left: 0px;
     height: 100px;
     color: #ff7f00;
-    margin-top: 2px;
+    margin-top: 30px;
     flex-wrap: wrap;
 
 }
@@ -37,7 +37,10 @@ img {
 }
 
 .key-words{
+    margin-top: 20px;
     padding-left: 0px;
+    display:flex;
+    flex-wrap: wrap;
 }
 
 .word{
@@ -83,13 +86,40 @@ img {
 
 /* BREAKPOINT */
 /* LARGE */
-@media(minwidth:1100px){
+@media(min-width:550px){
     .header-gallery{
         padding-left: 20px;
+        margin-top: 50px;
     }
+    .key-words{
+        padding-left: 70px;
+        margin-top: -5px;
+        display:flex;
+        flex-wrap: wrap;
+    }
+
+    .gallery-container{
+        margin-top: 50px;
+    }
+
+    pic-filter {
+        padding-left: 10px;
+        margin-top: -40px;
+        width: 328px;
+        height: 67px;
+        display: flex;
+        align-items: center;
+    }
+    
+
+}
+
+@media(min-width:950px){
 
     .key-words{
         padding-left: 70px;
+        margin-top: 0px;
+        display:flex;
+        flex-wrap: wrap;
     }
-
 }
