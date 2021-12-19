@@ -56,6 +56,11 @@
     border-bottom: 5px solid yellow;
     cursor: pointer;
 }
+.nav-bar li a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
 
 /* APP-CONTAINER */
 
@@ -85,25 +90,40 @@
 
 }
 
+
+.editor-meme {
+    display: flex;
+    align-items: c;
+    flex-direction: column;
+    flex-direction: column;
+    width: 33.12em;
+    height: 37.5em;
+    background-color: #d3d3d35c;
+    align-items: center;
+}
+
 .text-input {
+    margin-top: 20px;
     height: 3.125em;
     width: 15.625em;
 }
 
+.switch-color-Txt{
+    padding: 10px;
+}
 
 .option-input {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .color-text {
     height: 30px;
     width: 30px;
-    margin-bottom: 20px;
-
+    margin-left: 10px;
 }
 
 .option-text {
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .font-text {
@@ -111,12 +131,15 @@
 }
 
 .font-family {
+    margin-top: 20px;
     height: 50px;
     width: 130px;
 }
 
 .btn {
     margin-left: 10px;
+    height: 50px;
+    margin-top: 20px;
 }
 
 .modal{
@@ -132,13 +155,13 @@
 }
 
 .btns-actions {
-    margin-top: 0px;
+    margin-top: 20px;
     width: 328px;
     height: 67px;
 }
 
 .btn-line{
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .btns {
@@ -229,9 +252,9 @@ body.menu-open .screen{
     }
 
 
-    .nav-bar li {
+   /*  .nav-bar li {
         padding: 50px;
-    }
+    } */
 
     .nav-bar li:hover {
         border-bottom: 5px solid yellow;

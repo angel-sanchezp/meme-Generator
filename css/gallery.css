@@ -18,6 +18,33 @@ img {
     transition: opacity 0.5s;
 }
 
+.header-gallery{
+    padding-left: 0px;
+    height: 100px;
+    color: #ff7f00;
+    margin-top: 2px;
+    flex-wrap: wrap;
+
+}
+
+.search-words{
+    border-radius: 10px;
+    height: 37px;
+    width: 463px;
+    border-color: #ff7f00;
+    text-align: center;
+    margin-left: 33px;
+}
+
+.key-words{
+    padding-left: 0px;
+}
+
+.word{
+    margin-inline-start:20px;
+    cursor:pointer;
+}
+
 .gallery img:hover {
     cursor: pointer;
     opacity: 0.5;
@@ -52,4 +79,17 @@ img {
     gap: 50px 50px;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     /* display: block; */
+}
+
+/* BREAKPOINT */
+/* LARGE */
+@media(minwidth:1100px){
+    .header-gallery{
+        padding-left: 20px;
+    }
+
+    .key-words{
+        padding-left: 70px;
+    }
+
 }

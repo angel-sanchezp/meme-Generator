@@ -18,19 +18,19 @@ function isTextClicked(line, clickedPos) {
     // console.log(rectWidth);
     // console.log(point1)
     // console.log(point2)
-   const distance=  clickedPos.x >= point1.x && clickedPos.x <= point2.x &&
-   clickedPos.y >= point1.y && clickedPos.y <= point2.y;
+    const distance = clickedPos.x >= point1.x && clickedPos.x <= point2.x &&
+        clickedPos.y >= point1.y && clickedPos.y <= point2.y;
     // const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y- clickedPos.y) ** 2);
     // console.log(`distance ${distance} <= ${line.size}`);
-    return distance 
+    return distance
 
 
 }
 
 
-function setTextDrag(line, isDrag) {
+function setTextDrag(isDrag) {
+    var line   = getSelectedLine()
     line.isDrag = isDrag;
-
 }
 
 function moveLine(dx, dy) {
@@ -64,7 +64,7 @@ function onDown(ev) {
     console.log('ondown-pos', pos);
     if (!isTextClicked(line, pos)) return;
     console.log('hi')
-    setTextDrag(line, true);
+    setTextDrag(true);
     gStartPos = pos;
     document.body.style.cursor = 'grabbing';
 
@@ -85,7 +85,7 @@ function onMove(ev) {
 
 function onUp() {
     setTextDrag(false);
-    document.body.style.cursor = 'grab';
+    document.body.style.cursor = 'auto';
 
 }
 

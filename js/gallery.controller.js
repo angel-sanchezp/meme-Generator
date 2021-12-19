@@ -3,6 +3,7 @@
 var gFilterBy = 'ALL';
 function initGallery() {
  renderImgs();
+ renderKeyWord();
 
 }
 
@@ -37,12 +38,26 @@ function filterImgs(imgs) {
     });
 }
 
+function renderKeyWord() {
+    console.log('hi');
+    var strHTML = '';
+    for (var key in gKeyWords) {
+        strHTML += `
+        <li class="word" style="font-size:${gKeyWords[key]}px;" onclick = " onIncreasFont('${key}')">
+        ${key}
+    </li>
+    `
+    }
+    document.querySelector('.key-words').innerHTML = strHTML;
+}
+
+
 function imgClicked(imgId) {
     var elGallery = document.querySelector('.gallery-container');
     elGallery.style.display = 'none';
     var elGalleryMemes = document.querySelector('.memes-gallery');
     elGalleryMemes.style.display = 'none';
-    var elPicFilter=document.querySelector('.pic-filter');
+    var elPicFilter=document.querySelector('.header-gallery');
     elPicFilter.style.display='none';
     var elAppContainer = document.querySelector('.app-container');
     elAppContainer.style.display = 'flex'

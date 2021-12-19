@@ -69,13 +69,13 @@ function onBackToGallery() {
     elAppContainer.style.display = 'none';
     var elGallery = document.querySelector('.memes-gallery');
     elGallery.style.display = 'none';
-    var elPicFilter=document.querySelector('.pic-filter');
-    elPicFilter.style.display='filter';
+    var elPicFilter=document.querySelector('.header-gallery');
+    elPicFilter.style.display='block';
     var elGallery = document.querySelector('.gallery-container');
     elGallery.style.display = 'block';
 }
 
-function onSave(elbtn) {
+function onSave() {
     saveMeme();
 }
 
@@ -84,19 +84,27 @@ function onChangeFont(fontFamily) {
     renderMeme();
 }
 
+function onIncreasFont(word){
+    var words=getWords();
+    words[word]=words[word]+5;
+    renderKeyWord();
+}
+
 function onMoveX(index) {
     setMoveX(index);
     renderMeme();
 }
 
 function onGetSavedMemes() {
-    // console.log('hi')
+    console.log('onGetSavedMemes')
     var elGallery = document.querySelector('.gallery-container');
     elGallery.style.display = 'none';
     var elAppContainer = document.querySelector('.app-container');
     elAppContainer.style.display = 'none'
-    var elPicFilter=document.querySelector('.pic-filter');
+    var elPicFilter=document.querySelector('.header-gallery');
     elPicFilter.style.display='none';
+    var elMemeGallery = document.querySelector('.memes-gallery')
+    elMemeGallery.style.display = 'grid'
     loadMemes();
 }
 

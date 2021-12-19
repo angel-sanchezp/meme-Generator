@@ -217,6 +217,7 @@ function saveMeme() {
     var meme = getMeme();
     // console.log(meme);
     gMemes.push(meme);
+    console.log(gMemes)
     showModal("Your Meme saved!");
     _saveMemesToStorage();
 }

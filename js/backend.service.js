@@ -1,30 +1,31 @@
 
 // var gImgs = [{ id: 1, url: 'imgs/1.jpg', keywords: ['funny', 'cat'] }];
 
-const KEY='MemeDB';
+const KEY = 'MemeDB';
+const gKeyWords = {  'politics': 10,'funny': 70 , 'famous': 50 , 'babys': 30  ,  'another': 10 , 'pets': 50};
 var gImgs = createImages();
 // var gStickers=createStickers();
 var gMemeImg;
-var gMemes = [];
+var gMemes = _loadMemesFromStorage() || [];
 var gMeme;
 
 function createMeme(imgId) {
     return {
         selectedImg: imgId,
-        url:`./imgs/${imgId}.jpg`,
+        url: `./imgs/${imgId}.jpg`,
         selectedLineIdx: 0,
-        selectedStikerIdx:0,
+        selectedStikerIdx: 0,
         lines: [{
             txt: 'Your Text',
             size: 20,
             fontFamily: 'IMPACT',
             color: 'black',
-            pos:null,
+            pos: null,
             width: null,
-            isDrag:false
+            isDrag: false
         }
         ]
-        
+
     }
 }
 
@@ -32,12 +33,15 @@ function getMeme() {
     return gMeme;
 }
 
+function getWords() {
+    return gKeyWords;
+}
 function getImgs() {
     // console.log(gImgs);
     return gImgs;
 }
 
-function getMemeStickers(index){
+function getMemeStickers(index) {
     return gMeme.lines[index];
 }
 function getImg() {
@@ -50,100 +54,100 @@ function getMemeLines() {
 }
 
 function CreateImg(id) {
-   switch(id){
+    switch (id) {
 
-    case 1:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords: ['funny', 'politics'] 
+        case 1: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['funny', 'politics']
+        }
+        case 2: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['pets']
+        }
+        case 3: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['babys', 'pets']
+        }
+        case 4: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['pets']
+        }
+        case 5: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['babys', 'funny']
+        }
+        case 6: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['another']
+        }
+        case 7: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['babys', 'funny']
+        }
+        case 8: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['another']
+        }
+        case 9: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['babys', 'funny']
+        }
+        case 10: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['politics', 'funny']
+        }
+        case 11: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['another']
+        }
+        case 12: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['another']
+        }
+        case 13: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['famous']
+        }
+        case 14: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['famous']
+        }
+        case 15: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['another']
+        }
+        case 16: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['famous']
+        }
+        case 17: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['politics']
+        }
+        case 18: return {
+            id,
+            url: `./imgs/${id}.jpg`,
+            keywords: ['funny']
+        }
     }
-    case 2:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['pets'] 
-    }
-    case 3:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords: ['babys', 'pets'] 
-    }
-    case 4:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['pets'] 
-    }
-    case 5:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['babys','funny'] 
-    }
-    case 6:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['another'] 
-    }
-    case 7:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['babys','funny'] 
-    }
-    case 8:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['another'] 
-    }
-    case 9:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['babys','funny'] 
-    }
-    case 10:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['politics','funny'] 
-    }
-    case 11:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['another'] 
-    }
-    case 12:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:['another']
-    }
-    case 13:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['famous'] 
-    }
-    case 14:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['famous'] 
-    }
-    case 15:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['another'] 
-    }
-    case 16:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['famous'] 
-    }
-    case 17:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['politics'] 
-    }
-    case 18:return{
-        id,
-        url: `./imgs/${id}.jpg`,
-        keywords:  ['funny'] 
-    }
-   }
-    
+
 }
 // start to render sticker
 // function createSticker(id){
@@ -185,9 +189,15 @@ function _saveMemesToStorage() {
     saveToStorage(KEY, gMemes)
 }
 
-function loadMemes(){
+
+// Render memes only from controller.
+function loadMemes() {
     // console.log('hi')
-    var memes=loadFromStorage(KEY)
-    console.log(memes);
+    var memes = loadFromStorage(KEY)
+    console.log({memes});
     renderMemes(memes);
+}
+
+function _loadMemesFromStorage(){
+    return loadFromStorage(KEY)
 }

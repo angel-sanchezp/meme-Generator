@@ -20,8 +20,8 @@
 
         <nav class="nav-bar">
             <ul class=" flex space-between align-center clean-list">
-                <li><a onclick="onBackToGallery()">gallery</a></li>
-                <li><a onclick="onGetSavedMemes()">Memes</a></li>
+                <li  onclick="onBackToGallery()">gallery</li>
+                <li onclick="onGetSavedMemes()">Memes</li>
                 <li><a>About</a></li>
 
             </ul>
@@ -35,18 +35,26 @@
 
     <section class="memes-gallery"></section>
     
-    <div class="pic-filter">
-        <h3>Choose Category:</h3>
-            <input list="search-datalist" name="search-datalist" id="search" type="txt" class="search-words" oninput="onSetFilter()" placeholder="Type an image category...">
-            <datalist id="search-datalist">
-              <option value="pets">
-              <option value="politics">
-              <option value="famous">
-              <option value="baby">
-              <option value="funny">
-              <option value="another">
-            </datalist>
-    </div>
+    <section class="header-gallery flex align-center">
+        <div class="pic-filter">
+            <h3>Choose Category:</h3>
+                <input list="search-datalist" name="search-datalist" id="search" type="txt" class="search-words" oninput="onSetFilter()" placeholder="Type an image category...">
+                <datalist id="search-datalist">
+                  <option value="pets">
+                  <option value="politics">
+                  <option value="famous">
+                  <option value="baby">
+                  <option value="funny">
+                  <option value="another">
+                </datalist>
+        </div>
+ 
+        <div class="key-words flex space-between align-center clean-list">
+            <ul class="flex space-between align-center"></ul>
+        </div>
+
+
+    </section>
     <div class="gallery-container">
 
         <section class="gallery"></section>
@@ -59,7 +67,7 @@
     <section class="app-container">
 
         <section class="canvas-container">
-            <canvas class="my-canvas" height="500" width="500"></canvas>
+            <canvas class="my-canvas" height="600" width="600"></canvas>
         </section>
 
         <div class="editor-container flex">
@@ -75,11 +83,13 @@
                 </div>
 
                 <div class="option-text">
-                    <button class=" btn btn-switch"><img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png"
-                        onclick="onSwitchTxt()"></button>
-                    <label>Text Color</label>
-                    <input type="color" class="color-text" name="color-text" placeholder="#fff"
-                        oninput="onChangeTextColor(this)">
+                    <div class="switch-color-Txt">
+                        <button class=" btn btn-switch"><img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png"
+                            onclick="onSwitchTxt()"></button>
+                        <label style="margin-left: 20px;">Text Color</label>
+                        <input type="color" class="color-text" name="color-text" placeholder="#fff"
+                            oninput="onChangeTextColor(this)">
+                    </div>
                     <div class="font-text flex">
                         <select class="font-family" name="select-font-family" onchange="onChangeFont(this.value)">
                             <option value="IMPACT">Impact</option>
@@ -95,7 +105,7 @@
                     <div class="btn-line">
                         <button class=" btn btn-increase"><img src="./icons/align-to-left.png"
                             onclick="onMoveX(-10)"></button>
-                    <button class=" btnl btn-increase"><img src="./icons/center-text-alignment.png"
+                    <button class=" btn btn-increase"><img src="./icons/center-text-alignment.png"
                             onclick="onMoveX(1)"></button>
                     <button class=" btn btn-increase"><img src="./icons/align-to-right.png"
                             onclick="onMoveX(10)"></button>
