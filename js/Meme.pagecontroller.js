@@ -37,12 +37,14 @@ function onAddStiker(id){
 }
 
 function onChangeText(elInput) {
-    setLineText(elInput.value)
+    setLineText(elInput.value);
     renderMeme();
 }
 
 function onChangeTextColor(inputColor) {
     setColortext(inputColor.value);
+    var colorInput=document.querySelector('.color-text');
+    colorInput.type='hidden';
     renderMeme();
 }
 
@@ -70,6 +72,8 @@ function onSwitchTxt() {
 }
 
 function onAddRow() {
+    var inputTxt = document.querySelector('.text-input');
+    inputTxt.value = '',
     addRow();
     renderMeme();
     focusText();
