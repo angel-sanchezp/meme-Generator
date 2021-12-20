@@ -13,7 +13,7 @@ function renderImgs() {
     var elGalleryMemes = document.querySelector('.memes-gallery');
     elGalleryMemes.style.display = 'none';
     var imgs =getImgsForDisplay();
-    console.log(imgs)
+    // console.log(imgs)
     var strHtml = imgs.map(img =>
         `<img src="${img.url}" onclick="imgClicked(${img.id})"/>`
     );
@@ -41,7 +41,7 @@ function filterImgs(imgs) {
 }
 
 function renderKeyWord() {
-    console.log('hi');
+    // console.log('hi');
     var strHTML = '';
     for (var key in gKeyWords) {
         strHTML += `

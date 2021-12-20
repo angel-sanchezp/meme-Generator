@@ -72,7 +72,7 @@ function onDown(ev) {
 
 function onMove(ev) {
     var line = getSelectedLine();
-    console.log(line.isDrag);
+    // console.log(line.isDrag);
     if (!line.isDrag) return;
     const pos = getEvPos(ev)
     // console.log('ondown-pos', pos);

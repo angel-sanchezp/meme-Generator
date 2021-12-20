@@ -52,7 +52,7 @@ function addSticker(){
 
 function addText() {
     var memeLines = getMemeLines();
-    console.log('meme lines',memeLines);
+    // console.log('meme lines',memeLines);
 
     for (var i = 0; i < memeLines.length; i++) {
         if(memeLines[i].sticker) {

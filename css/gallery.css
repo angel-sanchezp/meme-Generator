@@ -65,7 +65,7 @@ img {
 }
 
 .footer{
-    margin-top: 100px;
+    margin-top: 17px;
     height: 120px;
     display: flex;
     flex-direction: column;
@@ -82,6 +82,21 @@ img {
     gap: 50px 50px;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     /* display: block; */
+}
+
+.about-me{
+    margin-top: 107px;
+}
+.my-foto{
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin-left: 157px;
+}
+
+.about-me-p{
+    margin-top: 81px;
+    margin-left: 50px;
 }
 
 /* BREAKPOINT */
